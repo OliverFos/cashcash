@@ -1,0 +1,43 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+  margin: 0;
+  padding: 0 50px; /* Adjust padding as needed */
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header {
+  background-color: black;
+  color: white;
+  width: 100%;
+  padding: 10px; /* Add padding to the header */
+}
+
+footer {
+  background-color: black;
+  color: white;
+  margin-top: auto; /* Push the footer to the bottom */
+  width: 100%;
+  padding: 10px; /* Add padding to the footer */
+}
+
+.center {
+  text-align: center;
+}
+
+.card {
+  margin: 10px;
+}
+
+.wider {
+  width: 100%;
+}
+
+table {
+  border-radius: 50px;
+}
+
+.custom-width-button {
+  max-width: fit-content;
+}
