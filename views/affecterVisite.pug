@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1 Affecter visite 
+  if interventionData
+    table(class="table table-sm table-dark")
+      thead
+        tr
+          th(scope="col") Numéro intervention
+          th(scope="col") Date intervention
+          th(scope="col") Heure intervention
+          th(scope="col") Numéro client
+          th(scope="col")
+        for item in interventionData
+          - const date = new Date(item.dateIntervention);
+          - // Adjusting for timezone offset
+          - const timezoneOffset = date.getTimezoneOffset() * 60000;
+          - const localDate = new Date(date - timezoneOffset);
+          - const formattedDate = localDate.toISOString().slice(0, 10);
+          tr
+            td(scope="row")= item.numIntervention
+            td(scope="row")= formattedDate
+            td(scope="row")= item.heureIntervention
+            td(scope="row")= item.numClient
+            td(scope="row")
+              a(href=`/ajouterTech?idInter=${item.numIntervention}&idCli=${item.numClient}&heure=${item.heureIntervention}&date=${formattedDate}`) Affecter visite avec un technicien
+
+  if messageErr
+    div(class="alert alert-danger" role="alert")= messageErr
+    br
+    a(href="/ajouterTech") 
+  a(href="../") retour au menu

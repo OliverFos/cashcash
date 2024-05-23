@@ -1,0 +1,29 @@
+extends layout 
+
+block content
+  h1 Recherche Client
+
+  form(action="", method="post")
+    div(class="input-group mb-3" style="width:50%")
+      input(type="text" class="form-control" placeholder="Numéro Client" aria-label="Fiche client" aria-describedby="basic-addon2" name="numCli")
+      button(type="submit" class="btn btn-primary") Rechercher
+      
+  if cliData
+    table(class="table table-sm table-dark")
+      thead
+        tr
+          th(scope="col") Numéro du client
+          th(scope="col") Nom du client
+          th(scope="col") Modifier le client
+        for item in cliData
+          tr
+            td(scope="row")= item.numClient
+            td(scope="row")= item.nomClient
+            td(scope="row")
+              a(href="/modifClient?id="+item.numClient) Modifier la fiche client
+  else  
+    if message
+      div(class="alert alert-danger" role="alert")= message
+  a(href="../") retour au menu
+
+

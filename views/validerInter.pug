@@ -1,0 +1,35 @@
+extends layout 
+
+block content
+    h1 Valider les interventions
+    if repareData
+        table(class="table table-sm table-dark")
+            thead
+                tr
+                    th(scope="col") Numéro de série
+                    th(scope="col") Durée de l'intervention
+                    th(scope="col") Commentaire
+                    th(scope="col")
+                for item in repareData
+                    tr
+                        form(action="", method="post") 
+                            td(scope="row")= item.numSerie
+                            td(scope="row")
+                                input(type="time" step="1" name="dureeRep" required)
+                            td(scope="row")
+                                input(type="text" placeholder="Commentaire" name="commentaire")
+                            td(scope="row")
+                                input(type="hidden" value= item.numSerie name="numSerie")
+                                input(type="hidden" value= item.numIntervention name="numInter")
+                                button(type="submit" class="wider btn btn-primary btn-sm") Valider l'intervention
+
+
+      
+    if message
+        div(class="alert alert-success" role="alert")= message
+        a(href=`/validerInter/annulerIntervention/${numMat}/${numInter}` class="btn btn-outline-danger btn-sm" style="width:fit-content") Annuler l'intervention
+    br
+    a(href="/consultInter") retour en arrière
+    br
+    a(href="../") retour au menu
+

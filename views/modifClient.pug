@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    h1= id
+
+    if userData
+        form(action="", method="post") 
+            table
+                for item in userData
+                    tr
+                        td
+                            input(type="text" value=item.nomClient placeholder="Nom du client" name="nom")
+                        td
+                            input(type="text" value=item.raisonSociale placeholder="Raison sociale" name="raisonSociale")
+                    tr 
+                        td
+                            input(type="text" value=item.SIREN placeholder="SIREN" name="siren")
+                        td 
+                            input(type="text" value=item.APE placeholder="APE" name="ape")
+                    tr
+                        td 
+                            input(type="text" value=item.adresseClient placeholder="Adresse du client" name="adresse")
+                        td 
+                            input(type="text" value=item.telephoneClient placeholder="Numéro de téléphone" name="telephone")
+                    tr 
+                        td 
+                            input(type="text" value=item.telecopieClient placeholder="Numéro de télécopie" name="telecopie")
+                        td 
+                            input(type="text" value=item.emailClient placeholder="Email" name="email")
+                    tr
+                        td 
+                            input(type="text" value=item.distanceKilo placeholder="Distance Kilométrique" name="distanceKilo")
+                        td
+                            input(type="text" value=item.tempsDeplacement placeholder="Temps de déplacement" name="tempsDeplacement")
+                    tr 
+                        td 
+                            input(type="text" value=item.numAgence placeholder="Numéro de l'agence" name="numeroAgence")
+                        td
+                            button(type="submit" class="wider btn btn-primary btn-sm") Modifier les données
+
+    if messageSucc
+        div(class="alert alert-success" role="alert")= messageSucc
+        a(href="/modifClient?id="+id) vous avez fait un erreur? retour à la page de modification 
+    
+    if messageErr
+        div(class="alert alert-danger" role="alert")= messageErr
+        a(href="/modifClient?id="+id) retourner à la page de modification
+    br
+    a(href="rechClient") retour au recherche client
+    br
+    a(href="../") retour au menu

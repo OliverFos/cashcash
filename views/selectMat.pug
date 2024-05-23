@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    if matData
+        table
+            form(action="", method="post")
+                for item in matData
+                        tr
+                            td
+                                input(type="checkbox", name=item.numSerie)
+                                label(for=item.numSerie)= item.numSerie
+                tr
+                    td
+                        input(type="submit", value="Ajouter les matériaux", class="btn btn-outline-primary btn-sm", id="confirm")
+
+    
+    a(href="../") retour au menu
+    

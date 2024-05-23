@@ -1,0 +1,49 @@
+extends layout
+
+block content
+    h1 Statistiques par Technicien
+
+    if numSal
+        h2 Statistiques pour le Technicien Numéro #{numSal}
+
+    form(action="", method="post") 
+        input(type="hidden", name="numSal", value="#{numSal}")
+        div.form-group
+            label(for="mois") Mois
+            select(name="mois" id="mois" class="form-control" required style="width:fit-content")
+                option(value="" disabled selected) Sélectionnez le mois
+                option(value="01") Janvier
+                option(value="02") Février
+                option(value="03") Mars
+                option(value="04") Avril
+                option(value="05") Mai
+                option(value="06") Juin
+                option(value="07") Juillet
+                option(value="08") Août
+                option(value="09") Septembre
+                option(value="10") Octobre
+                option(value="11") Novembre
+                option(value="12") Décembre
+
+        div.form-group
+            label(for="annee") Année
+            select(name="annee" id="annee" class="form-control" required style="width:fit-content")
+                option(value="" disabled selected) Sélectionnez l'année
+                - for (let year = new Date().getFullYear(); year >= 2000; year--)
+                    option(value=year)= year
+
+        button(type="submit" class="btn btn-primary mt-3" style="width:fit-content") Afficher les Statistiques
+
+
+    if real
+        h3 Résultats pour #{mois}/#{annee}
+        p Nombre d'interventions réalisées: #{nbInterventions}
+        p Nombre de kilomètres parcourus: #{nbKilometres} km
+        p Durée passée à contrôler le matériel: #{dureeControle} heures
+
+    if messageErr
+        p &nbsp;
+        div(class="alert alert-danger" role="alert")= messageErr
+
+    a(href="/rechIntervention") retour en arrière
+    a(href="../") retour au menu

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    if numCli
+        h2= numCli
+
+    if matData
+        form(action="", method="post")
+            table
+                for item in matData
+                    tr
+                        td
+                            if item.isChecked == 0
+                                input(type="checkbox", name=item.numSerie)
+                                label(for=item.numSerie)= item.numSerie
+                            else
+                                input(type="checkbox", name=item.numSerie, checked)
+                                label(for=item.numSerie)= item.numSerie
+                tr
+                    td
+                        input(type="submit", value="Ajouter les matériaux", class="btn btn-outline-primary btn-sm", id="confirm")
+
+    if messageSucc
+        p &nbsp;
+        div(class="alert alert-success" role="alert")= messageSucc
+        a(href="/modifMat?numCli=" + numCli + "&numInter=" + numInter) modifier
+
+    if messageErr
+        div(class="alert alert-danger" role="alert")= messageErr
+
+    if messageSucc
+        br
+
+    a(href="/modifIntervention?id=" + numInter) retour en arrière
+    a(href="../") retour au menu

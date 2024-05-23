@@ -1,0 +1,50 @@
+extends layout 
+
+block content
+  h1 Recherche Intervention
+
+  form(action="", method="post")
+    div(class="input-group mb-3" style="width:50%")
+      input(type="text" class="form-control" placeholder="Date/Matricule" aria-label="Fiche client" aria-describedby="basic-addon2" name="info")
+      
+
+      input(type="radio" id="date dark-outlined" name="select" value="date" class="btn-check" checked)
+      label(for="date dark-outlined" class="btn btn-outline-dark") Date("année"-"mois"-"jour")
+
+      input(type="radio" id="agent dark-outlined" name="select" value="agent" class="btn-check")
+      label(for="agent dark-outlined" class="btn btn-outline-dark") Matricule Salarié (SXXXX)
+
+      button(type="submit" class="btn btn-primary") Rechercher
+
+    
+  if interData
+    table(class="table table-sm table-dark")
+      thead
+        tr
+          th(scope="col") Numéro d'intervention
+          th(scope="col") Date d'intervention
+          th(scope="col") Heure de l'intervention
+          th(scope="col") Numéro du client 
+          th(scope="col") Matricule de l'agent
+          th(scope="col") 
+        for item in interData
+          tr
+            td(scope="row")= item.numIntervention
+            td(scope="row")
+              script.
+                function formatDate(dateString) {
+                  var options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+                  var date = new Date(dateString);
+                  return date.toLocaleDateString('fr-FR', options);
+                }
+                var formattedDate = formatDate("#{item.dateIntervention}");
+                document.write(formattedDate);
+            td(scope="row")= item.heureIntervention 
+            td(scope="row")= item.numClient
+            td(scope="row")= item.numMatr 
+            td(scope="row")
+              a(href="/modifIntervention?id="+item.numIntervention) Modifier l'intervention
+  if message
+      div(class="alert alert-danger" role="alert")= message
+  a(href="../") retour au menu
+

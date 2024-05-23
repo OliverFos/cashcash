@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    h1 Consulter les interventions
+    if interData
+        table(class="table table-sm table-dark")
+            thead
+                tr
+                    th(scope="col") Numéro de l'intervention
+                    th(scope="col") Date intervention
+                    th(scope="col") Heure intervention
+                    th(scope="col") Numéro du client 
+                    th(scope="col") Temps déplacement
+                    th(scope="col") Distance Kilométrique
+                    th(scope="col")
+                for item in interData
+                    tr
+                        td(scope="row")= item.numIntervention
+                        td(scope="row")= item.dateIntervention
+                        td(scope="row")= item.heureIntervention
+                        td(scope="row")= item.numClient
+                        td(scope="row")= item.tempsDeplacement
+                        td(scope="row")= item.distanceKilo
+                        td(scope="row")
+                            a(href="/validerInter?numInter="+item.numIntervention) Valider l'intervention
+    else  
+        if message
+            div(class="alert alert-danger" role="alert")= message
+    a(href="../") retour au menu

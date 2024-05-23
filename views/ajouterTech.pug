@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    if idInter
+        h1= idInter
+    if techData
+        table(class="table table-sm table-dark")
+            thead
+                tr
+                    th(scope="col") Numéro Technicien
+                    th(scope="col")
+                for item in techData
+                    tr
+                        td(scope="row")= item.numMatr
+                        td(scope="row")
+                            form(action="" method="post") 
+                                input(type="hidden" value=item.numMatr name="numTech")
+                                input(type="hidden" value=idInter name="numInter")
+                                input(type="submit", value="Affecter la visite avec ce technicien" class="btn btn-outline-primary btn-sm" id="confirm")
+                             
+    if messageSucc
+        p &nbsp;
+        div(class="alert alert-success" role="alert")= messageSucc
+
+        p &nbsp;
+        a(href="/genererPDF?numInter="+numInter class="btn btn-outline-primary btn-sm" style="width:fit-content") Génerer un pdf
+
+        p &nbsp;
+        a(href=`ajouterTech/annulerTech/${numInter}`, class="btn btn-outline-danger btn-sm" style="width:fit-content") Annuler l'affectation
+    a(href="../") retour au menu

@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  if email
+    h1= email
+
+  if typeSal == true
+    table
+      tr 
+        td
+          div(class="card" style="width: 18rem;")
+            img(src="images/menuImg.jpg" class="card-img-top" alt="...")
+            div(class="card-body")
+              h5(class="card-title") Affecter une visite
+              p(class="card-text") Ajouter une visite à un technicien
+              a(href="affecterVisite" type="button" class="btn btn-outline-dark") Cliquer
+        td
+          div(class="card" style="width: 18rem;")
+            img(src="images/menuImg2.jpg" class="card-img-top" alt="...")
+            div(class="card-body")
+              h5(class="card-title") Recherche fiche
+              p(class="card-text") Rechercher une fiche client
+              a(href="rechClient" type="button" class="btn btn-outline-dark") Cliquer
+        td
+          div(class="card" style="width: 18rem;")
+            img(src="images/menuImg3.jpg" class="card-img-top" alt="...")
+            div(class="card-body")
+              h5(class="card-title") Créer intervention
+              p(class="card-text") Créer une intervention
+              a(href="creerInter" type="button" class="btn btn-outline-dark") Cliquer
+        td
+          div(class="card" style="width: 18rem;")
+            img(src="images/menuImg4.jpg" class="card-img-top" alt="...")
+            div(class="card-body")
+              h5(class="card-title") Recherche d'intervention
+              p(class="card-text") Par date ou agent
+              a(href="rechIntervention" type="button" class="btn btn-outline-dark") Cliquer
+  else
+    table
+      tr 
+        td
+          div(class="card" style="width: 18rem;")
+            img(src="images/menuImg5.jpg" class="card-img-top" alt="...")
+            div(class="card-body")
+              h5(class="card-title") Consulter intervention
+              p(class="card-text") Consulter et rechercher les interventions
+              a(href="consultInter" type="button" class="btn btn-outline-dark") Cliquer
+  a.btn.btn-danger(href="/logout", role="button", style="width:fit-content") Déconnexion
+
+

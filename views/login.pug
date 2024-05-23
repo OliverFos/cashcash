@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Connexion
+  form(action="", method="post")
+    div(class="input-group mb-3" style="width:50%")
+      input#username(type="text" class="form-control"  name="email", placeholder="E-mail" , required aria-label="Fiche client" aria-describedby="basic-addon2")
+      input#password(type="password" class="form-control" name="mdp", placeholder="Mot de passe" , required aria-label="Fiche client" aria-describedby="basic-addon2")
+      input(type="submit", value="Login" class="btn btn-outline-primary")
+      //img(src="images/weed.jpg")
+  if messageErr
+    div(class="alert alert-danger" role="alert")= messageErr
+
+      
+

@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    h1= id
+
+    if userData
+        for item in userData
+            form(action="", method="post") 
+                table
+                    tr
+                        td
+                            input(type="text" value=item.dateIntervention placeholder="Date de l'intervention" name="dateIntervention" class="form-control")
+                        td
+                            input(type="text" value=item.heureIntervention placeholder="Heure de l'intervention" name="heureIntervention" class="form-control")
+                    tr 
+                        td
+                            input(type="text" value=item.numClient placeholder="Numéro du client" name="numClient" class="form-control")
+                        td 
+                            input(type="text" value=item.numMatr placeholder="Numéro de matricule" name="numMatr" class="form-control")
+                        td
+                            button(type="submit" class="btn btn-primary btn-sm") Modifier les données
+            a(href=`/modifMat?numCli=${item.numClient}&numInter=${item.numIntervention}` class="btn btn-secondary btn-sm" style="width:fit-content") Sélectionner les matériaux
+
+            p &nbsp;
+            a(href=`/afficherStats?numSal=${item.numMatr}` class="btn btn-secondary btn-sm" style="width:fit-content") Afficher les statistiques
+            
+
+    if messageSucc
+        div(class="alert alert-success" role="alert")= messageSucc
+        a(href="/modifIntervention?id="+id) Vous avez fait un erreur? Retour à la page de modification 
+
+    p &nbsp;
+    a(href="/genererPDF?numInter="+id class="btn btn-outline-primary btn-sm" style="width:fit-content") Génerer un pdf
+    
+    if messageErr
+        div(class="alert alert-danger" role="alert")= messageErr
+        a(href="/modifIntervention?id="+id) Retourner à la page 
+    br
+    a(href="rechIntervention") Retour au recherche intervention
+    br
+    a(href="../") Retour au menu

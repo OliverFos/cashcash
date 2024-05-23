@@ -1,0 +1,23 @@
+extends layout 
+
+block content
+  //h1= title
+  //p Welcome to #{title}
+  p
+  div
+    if userData
+        table
+            for item in userData
+                tr 
+                    td= item.numClient
+                    td= item.raisonSociale
+                    td= item.SIREN
+                    td= item.APE
+                    td= item.adresseClient
+                    td= item.telephoneClient
+                    td= item.telecopieClient
+                    td= item.emailClient 
+                    td= item.nomClient
+                    td= item.distanceKilo 
+                    td= item.tempsDeplacement 
+                    td= item.numAgence

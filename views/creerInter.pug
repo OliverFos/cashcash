@@ -1,0 +1,44 @@
+extends layout 
+
+block content
+    h1 Créer une intervention
+    
+    form(action="", method="post" class="mt-4") 
+        .form-group
+            label(for="dateInter") Date intervention:
+            input(type="date" class="form-control" placeholder="Date intervention" name="dateInter" required)
+        
+        .form-group
+            label(for="heureInter") Heure intervention:
+            select(name="heureInter" class="form-control" required)
+                option(value="08:00:00") 08:00:00
+                option(value="09:00:00") 09:00:00
+                option(value="10:00:00") 10:00:00
+                option(value="11:00:00") 11:00:00
+                option(value="12:00:00") 12:00:00
+                option(value="13:00:00") 13:00:00
+                option(value="14:00:00") 14:00:00
+                option(value="15:00:00") 15:00:00
+                option(value="16:00:00") 16:00:00
+                option(value="17:00:00") 17:00:00
+                option(value="18:00:00") 18:00:00
+                option(value="19:00:00") 19:00:00
+                option(value="20:00:00") 20:00:00
+                option(value="21:00:00") 21:00:00
+        
+        .form-group
+            label(for="numCli") Numéro client:
+            input(type="text" class="form-control" placeholder="Numéro client" name="numCli" required)
+            
+        button(type="submit" class="btn btn-primary mt-3") Créer une intervention
+                    
+    if messageSucc
+        .alert.alert-success(role="alert")= messageSucc
+            a(href=`/ajouterMat?numCli=${numCli}&numInter=${numInter}` class="btn btn-secondary btn-sm ml-2") Ajouter le matériel à réparer
+    
+    if messageErr
+        .alert.alert-danger(role="alert")= messageErr
+    
+
+    br
+    a(href="../") retour au menu
